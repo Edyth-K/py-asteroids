@@ -38,10 +38,14 @@ def main():
             
         updatable.update(dt)
 
-        for obj in asteroids:
-            if obj.isColliding(player):
+        for asteroid in asteroids:
+            if asteroid.isColliding(player):
                 print("Game over!")
                 sys.exit()
+            for bullet in bullets:
+                if asteroid.isColliding(bullet):
+                    asteroid.split()
+                    bullet.kill()
 
         pygame.Surface.fill(screen, (0,0,0))
 
