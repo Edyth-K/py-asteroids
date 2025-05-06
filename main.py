@@ -1,6 +1,7 @@
 # this allows us to use code from
 # the open-source pygame library
 # throughout this file
+import sys
 import pygame
 from player import Player
 from asteroid import Asteroid
@@ -33,6 +34,12 @@ def main():
             if event.type == pygame.QUIT:
                 return
         updatable.update(dt)
+
+        for obj in asteroids:
+            if obj.isColliding(player):
+                print("Game over!")
+                sys.exit()
+
         pygame.Surface.fill(screen, (0,0,0))
 
         for obj in drawable:
